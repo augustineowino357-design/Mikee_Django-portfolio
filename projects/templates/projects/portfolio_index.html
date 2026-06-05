@@ -1,0 +1,37 @@
+{% extends 'projects/base.html' %}
+
+{% block content %}
+<section class="bg-white text-dark py-5 border-bottom text-center">
+    <div class="container py-4">
+        <h1 class="display-5 fw-bold">Welcome to My Professional Space</h1>
+        <p class="lead text-muted">Engineering reliable backend systems with Python & Django.</p>
+    </div>
+</section>
+
+<section class="container py-5">
+    <h2 class="fw-bold mb-4">My Projects</h2>
+    <div class="row g-4">
+        {% for project in projects %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm card-hover">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold">{{ project.title }}</h5>
+                    <p class="card-text text-muted small flex-grow-1">{{ project.description }}</p>
+                    <div class="mb-3">
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">{{ project.technology }}</span>
+                    </div>
+                    {% if project.github_link %}
+                    <a href="{{ project.github_link }}" target="_blank" class="btn btn-outline-dark btn-sm w-100 mt-auto"><i class="bi bi-github me-2"></i>Source Code</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center text-muted py-5">
+            <i class="bi bi-folder2-open display-4"></i>
+            <p class="mt-2">No projects displayed yet. Drop them into the admin panel!</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
