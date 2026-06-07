@@ -1,3 +1,4 @@
+{% load static %}
 {% extends "projects/base.html" %}
 
 {% block content %}
@@ -9,7 +10,7 @@
             <!-- EXACT PLACE TO INSERT YOUR PICTURE -->
             <div class="col-md-4 text-center mb-4 mb-md-0">
                 <!-- Replace 'placeholder.jpg' inside your static directory later -->
-                <img src="https://via.placeholder.com/200" class="rounded-circle profile-img" alt="Mr. Augustine Headshot">
+                <img src="{% static 'profile.jpg' %}" class="rounded-circle profile-img" alt="Mr. Augustine Headshot">
             </div>
             
             <div class="col-md-8 text-center text-md-start">
