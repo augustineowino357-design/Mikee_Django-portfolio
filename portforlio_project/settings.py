@@ -24,9 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7gslo7i1!7$!7)87*+4dtw#n8+g_#)%m6paz1jsfidto(wbp$m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# (Setting DEBUG = False hides your internal code errors from random visitors on the internet,
+#  and ['*'] tells Django it is allowed to run on Render's web address).
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
