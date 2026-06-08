@@ -1,0 +1,21 @@
+{% extends "projects/base.html" %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h1 class="card-title display-5 mb-4">{{ project.title }}</h1>
+                    <p class="text-muted mb-3"><strong>Technologies:</strong> {{ project.technology }}</p>
+                    <p class="card-text mb-4">{{ project.description }}</p>
+                    {% if project.github_link %}
+                        <a href="{{ project.github_link }}" target="_blank" class="btn btn-primary">View on GitHub</a>
+                    {% endif %}
+                    <a href="{% url 'portfolio_index' %}" class="btn btn-link">Back to portfolio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
