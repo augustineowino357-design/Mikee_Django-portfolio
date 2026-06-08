@@ -1,0 +1,1 @@
+web: gunicorn portforlio_project.wsgi:application

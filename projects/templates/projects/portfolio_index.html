@@ -1,37 +1,88 @@
-{% extends 'projects/base.html' %}
+{% load static %}
+{% extends "projects/base.html" %}
 
 {% block content %}
-<section class="bg-white text-dark py-5 border-bottom text-center">
-    <div class="container py-4">
-        <h1 class="display-5 fw-bold">Welcome to My Professional Space</h1>
-        <p class="lead text-muted">Engineering reliable backend systems with Python & Django.</p>
+<!-- Professional Hero / About Section -->
+<section id="about" class="bg-white text-dark py-5 border-bottom">
+    <div class="container">
+        <div class="row align-items-center py-4">
+            
+            <!-- EXACT PLACE TO INSERT YOUR PICTURE -->
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <!-- Replace 'placeholder.jpg' inside your static directory later -->
+                <img src="{% static 'profile.jpg' %}" class="rounded-circle profile-img" alt="Mr. Augustine Headshot">
+            </div>
+            
+            <div class="col-md-8 text-center text-md-start">
+                <h1 class="display-4 fw-bold mb-2">Welcome to Mr. Augustine's Professional Space</h1>
+                <p class="lead text-muted fs-4">Engineering reliable backend systems with Python & Django.</p>
+                <p class="text-secondary">
+                    I am a passionate Backend Developer focusing on building scalable web architectures, clean RESTful APIs, and efficient data workflows. Turning complex business logic into smooth, secure infrastructure is my specialty.
+                </p>
+                <!-- Core Tech Skills Tags -->
+                <div class="mt-3">
+                    <span class="badge bg-primary p-2 m-1 fs-6">Python</span>
+                    <span class="badge bg-success p-2 m-1 fs-6">Django</span>
+                    <span class="badge bg-dark p-2 m-1 fs-6">Git & GitHub</span>
+                    <span class="badge bg-info text-dark p-2 m-1 fs-6">SQL databases</span>
+                    <span class="badge bg-secondary p-2 m-1 fs-6">REST APIs</span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="container py-5">
-    <h2 class="fw-bold mb-4">My Projects</h2>
-    <div class="row g-4">
+<!-- Dynamic Projects Section -->
+<section id="projects" class="container py-5">
+    <h2 class="text-center fw-bold mb-5">My Featured Projects</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for project in projects %}
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="card h-100 border-0 shadow-sm card-hover">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title fw-bold">{{ project.title }}</h5>
-                    <p class="card-text text-muted small flex-grow-1">{{ project.description }}</p>
-                    <div class="mb-3">
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">{{ project.technology }}</span>
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 card-hover">
+                <!-- Fallback or custom project image from model -->
+                {% if project.image %}
+                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <div class="bg-secondary text-white text-center d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <span class="fs-4 fw-light">Backend Architecture</span>
                     </div>
-                    {% if project.github_link %}
-                    <a href="{{ project.github_link }}" target="_blank" class="btn btn-outline-dark btn-sm w-100 mt-auto"><i class="bi bi-github me-2"></i>Source Code</a>
-                    {% endif %}
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold text-dark">{{ project.title }}</h5>
+                    <p class="card-text text-muted flex-grow-1">{{ project.description }}</p>
+                    <div class="mt-3">
+                        <span class="badge bg-light text-dark border">{{ project.technology }}</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-0 pb-3">
+                    <a href="{% url 'project_detail' project.pk %}" class="btn btn-outline-dark btn-sm w-100">View Project Details</a>
                 </div>
             </div>
         </div>
         {% empty %}
-        <div class="col-12 text-center text-muted py-5">
-            <i class="bi bi-folder2-open display-4"></i>
-            <p class="mt-2">No projects displayed yet. Drop them into the admin panel!</p>
+        <!-- Clean Empty State Display -->
+        <div class="col-12 text-center py-5">
+            <div class="text-muted mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16">
+                    <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.63a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2.5a2 2 0 0 1-2-2V3.87zM2 2a1 1 0 0 0-1 1v1h12V3a1 1 0 0 0-1-1H9.828a1 1 0 0 0-.707-.293L8.293 1.414A1 1 0 0 0 7.586 1H2.5z"/>
+                </svg>
+            </div>
+            <p class="fs-5 text-secondary">No active database records found. Create some showcase objects via your Django admin panel dashboard!</p>
+            <a href="/admin" class="btn btn-primary btn-sm mt-2">Go to Admin Panel</a>
         </div>
         {% endfor %}
     </div>
 </section>
-{% endblock %}
+
+<!-- Actionable Contact Section -->
+<section id="contact" class="bg-dark text-white py-5">
+    <div class="container text-center py-3">
+        <h2 class="fw-bold mb-3">Let's Work Together</h2>
+        <p class="lead text-muted mb-4 col-md-8 mx-auto">Available for software engineering opportunities, backend consulting, or collaboration on open-source packages.</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="mailto:your-email@example.com" class="btn btn-primary px-4 py-2">Get in Touch</a>
+            <a href="https://github.com/augustineowino357-design" target="_blank" class="btn btn-outline-light px-4 py-2">GitHub Profile</a>
+        </div>
+    </div>
+</section>
+{% endblock content %}
