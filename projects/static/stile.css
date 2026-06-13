@@ -1,0 +1,60 @@
+/* Container alignment */
+.contact-buttons-container {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #1a1e24; /* Dark background matching screenshot 2 */
+    color: #ffffff;
+}
+
+.contact-buttons-container h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+/* Base button styles */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none; /* This hides the ugly underline */
+    border-radius: 8px;    /* Gives it those nice rounded corners */
+    transition: background 0.3s ease;
+}
+
+/* The solid blue "Get in Touch" button */
+.btn-primary {
+    background-color: #0066ff;
+    color: white;
+    border: 2px solid #0066ff;
+}
+.btn-primary:hover {
+    background-color: #0052cc;
+}
+
+/* The bordered "GitHub Profile" button */
+.btn-outline {
+    background-color: transparent;
+    color: white;
+    border: 2px solid #555555;
+}
+.btn-outline:hover {
+    background-color: #2a2f35;
+}
+
+/* Dark GitHub button used on light surfaces */
+.btn-github {
+    background-color: #111; /* dark background */
+    color: #ffffff;
+    border: 2px solid transparent;
+    width: 50px;
+    padding: 0.5rem 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-github:hover {
+    background-color: #000;
+    color: #fff;
+}
